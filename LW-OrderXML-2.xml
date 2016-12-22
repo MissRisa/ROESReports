@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<XML ID="Lab Order">
+	<Creator>RPL</Creator>
+	<Version>Super Underground Alpha.01</Version>
+	<Orders>
+		<Order>
+			<OrderID>[LAB_ORDER_ID]</OrderID>
+			<OrderHeader>
+				<OrderTimeStamp>[CURRENT_TIME]</OrderTimeStamp>
+				<OrderDate>[CURRENT_DATE]</OrderDate>
+				<OrderTotal>[SET_MACRO(THE_TOTAL, 12.00 + <SHIPPING_TOTAL_PRICE>)][THE_TOTAL(03.02)]</OrderTotal>
+				<OrderNotes>[SPECIAL_INSTRUCTIONS]</OrderNotes>[\]
+				[BEGIN_ORDER_OPTIONS_LIST][\]
+				[BEGIN_IF("<ORDER_OPTION_ID>"=="REF1")][\]
+				<OrderReference>[ORDER_OPTION_LABEL]</OrderReference>
+				[END_IF][\]
+				[END_ORDER_OPTIONS_LIST][\]
+				<OrderPromoCode>[SET_MACRO_FROM_ORDER_ATTRIBUTE(PROMOCODE,promocode)][PROMOCODE]</OrderPromoCode>
+				<Customer>
+					<CustomerID>[CUSTOMER_NUMBER]</CustomerID>
+					<AccountName>[CUSTOMER_NAME]</AccountName>
+		          	<Phone1>[CUSTOMER_NUMBER]</Phone1>
+		         	<Email>[CUSTOMER_EMAIL]</Email>
+				</Customer>
+				<Billing>	
+					<CustomerName>[CUSTOMER_NAME]</CustomerName>
+					<Address1>[PAYMENT_CREDIT_CARD_ADDRESS]</Address1>
+					<Address2></Address2>
+					<City>[PAYMENT_CREDIT_CARD_CITY]</City>
+					<State>[PAYMENT_CREDIT_CARD_STATE]</State>
+					<PostalCode>[PAYMENT_CREDIT_CARD_ZIP]</PostalCode>
+					<Country>[CUSTOMER_COUNTRY]</Country>
+					<Phone>[CUSTOMER_PHONE]</Phone>
+				</Billing>
+				<Shipping>[\]
+					[BEGIN_IF(("<SHIPPING_ID>"=="UPSGDSR") || ("<SHIPPING_ID>"=="UPS2DADSR") || ("<SHIPPING_ID>"=="UPS3DSDSR") || ("<SHIPPING_ID>"=="UPSNDADSR") || ("<SHIPPING_ID>"=="UPSRED2") || ("<SHIPPING_ID>"=="UPSWEDSR"))]
+					<DropShip>Yes</DropShip>
+					[END_IF] [\]
+					<CustomerName>[SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_NAME,ship_to_name)][SHIP_NAME]</CustomerName>
+					<Address1>[SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_ADDRESS,ship_to_address)][SHIP_ADDRESS]</Address1>
+					<Address2>[SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_ADDRESS2,ship_to_address2)][SHIP_ADDRESS2]</Address2>
+					<City>[SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_CITY,ship_to_city)][SHIP_CITY]</City>
+					<State>[SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_STATE,ship_to_state)][SHIP_STATE]</State>
+					<PostalCode>[SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_ZIP,ship_to_zip)][SHIP_ZIP]</PostalCode>
+					<Country>[SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_COUNTRY,ship_to_country)][SHIP_COUNTRY]</Country>
+					<Phone1>[SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_PHONE,ship_to_phone)][SHIP_PHONE]</Phone1>
+					<ShippingMethod>[SHIPPING_ID]</ShippingMethod>
+					<ShippingPrice>[SHIPPING_TOTAL_PRICE]</ShippingPrice>
+				</Shipping>
+				<Payment>
+					<EncryptionType>ROES</EncryptionType>
+					<PaymentType>[PAYMENT_METHOD]</PaymentType>
+					<PaymentNote></PaymentNote>
+					<CardNum>[SET_MACRO_FROM_MACRO_WITH_ENCRYPTION(ENCRYPTED_CREDIT_CARD_NUMBER,PAYMENT_CREDIT_CARD_NUMBER)][ENCRYPTED_CREDIT_CARD_NUMBER]</CardNum>
+					<CardExp>[PAYMENT_CREDIT_CARD_EXP]</CardExp>
+					<CardCCID>[SET_MACRO_FROM_MACRO_WITH_ENCRYPTION(ENCRYPTED_CREDIT_CARD_CVV,PAYMENT_CREDIT_CARD_CVV)][ENCRYPTED_CREDIT_CARD_CVV]</CardCCID>
+					<CardName>[PAYMENT_CREDIT_CARD_NAME]</CardName>
+					<CardName></CardName>
+					<CardAmt></CardAmt>
+				</Payment>
+			</OrderHeader>
+			<OrderItems>
+				[BEGIN_IF("<CATALOG>" == "Albums")][\]
+					[BEGIN_PRODUCT_SUMMARY_LIST][\]
+						[BEGIN_IF("<PRODUCT_ID>" != "" && "<PRODUCT_ID>" != "blank")][\]
+				<OrderItemInfo>
+					<OISequence>[PRODUCT_INDEX]</OISequence>
+					<ItemCode>[PRODUCT_ID]</ItemCode>
+					<Description>[PRODUCT_PRODUCT_DESCRIPTION]</Description>
+					<Qty>[PRODUCT_QUANTITY]</Qty>
+					<Each>1</Each>
+				</OrderItemInfo>
+							[BEGIN_PRODUCT_OPTIONS_SUMMARY_LIST][\]
+								[BEGIN_IF("<PRODUCT_OPTIONS_OPTION_ID>" != "")][\]
+				<OrderItemInfo>
+					<ItemCode>[PRODUCT_OPTIONS_OPTION_ID]</ItemCode>
+					<Description>[PRODUCT_OPTIONS_LABEL]</Description>
+					<Qty>[PRODUCT_OPTIONS_QUANTITY]</Qty>
+					<Each>1</Each>
+				</OrderItemInfo>
+								[END_IF][\]
+							[END_PRODUCT_OPTIONS_SUMMARY_LIST][\]
+						[END_IF][\]
+					[END_PRODUCT_SUMMARY_LIST][\]
+				[END_IF][\]
+				[BEGIN_IF("<CATALOG>" == "Press Printed Softcover Books" || "<CATALOG>" == "Press Printed Hardcover Books" || "<CATALOG>" == "Press Printed Hardcover Layflat Books")][\]
+				[BEGIN_ITEM_LIST][\]
+				<OrderItemInfo>
+					<OISequence>[ITEM_INDEX]</OISequence>
+					<ItemCode>[ITEM_PRODUCT_CODE]</ItemCode>
+					<Description>[ITEM_PRODUCT_DESCRIPTION]</Description>	
+					<Qty>[ITEM_QUANTITY]</Qty>
+					<Each>1</Each>
+					[BEGIN_ITEM_OPTIONS_LIST][\]
+						<ItemCode>[ITEM_OPTION_ID]</ItemCode>
+						<Description>[ITEM_OPTION_LABEL]</Description>
+						<Qty>[ITEM_OPTION_QUANTITY]</Qty>
+						<Each>1</Each>
+					[END_ITEM_OPTIONS_LIST][\]
+					[BEGIN_UNIT_LIST]
+						[BEGIN_UNIT_OPTIONS_LIST][\]
+							<ItemCode>[UNIT_OPTION_ID]</ItemCode>
+							<Description>[UNIT_OPTION_LABEL]</Description>
+							<Qty>[ITEM_OPTION_QUANTITY]</Qty>
+							<Each>1</Each>
+						[END_UNIT_OPTIONS_LIST][\]
+					[END_UNIT_LIST] 
+				</OrderItemInfo>
+				[END_ITEM_LIST][\]
+			[END_IF][\]
+			[BEGIN_IF("<CATALOG>"=="No-Correction Prints" || "<CATALOG>"=="Lab-Corrected Prints" || "<CATALOG>"=="No Correction Prints" || "<CATALOG>"=="Proof Prints" || "<CATALOG>"=="Framed Prints" || "<CATALOG>"=="Album Prints" || "<CATALOG>"=="Unit Prints" || "<CATALOG>"=="No-Correction Headshots" || "<CATALOG>"=="Lab-Corrected Headshots" || "<CATALOG>"=="Store" || "<CATALOG>"=="Press Printed Folded Cards" || "<CATALOG>"=="Press Printed Flat Cards" || "<CATALOG>"=="Press Flat Cards" || "<CATALOG>"=="Press Flat Cards" || "<CATALOG>"=="Fine Art Prints" || "<CATALOG>"=="Canvas" || "<CATALOG>"=="Fine Art Prints" || "<CATALOG>"=="Trademark Prints")][\]
+				[BEGIN_ITEM_LIST][\]
+				<OrderItemInfo>
+					<OISequence>[ITEM_INDEX]</OISequence>
+					<ItemCode>[ITEM_PRODUCT_CODE]</ItemCode>
+					<Description>[ITEM_PRODUCT_DESCRIPTION]</Description>	
+					<Qty>[ITEM_QUANTITY]</Qty>
+					<Each>1</Each>
+					[BEGIN_ITEM_OPTIONS_LIST][\]
+						<ItemCode>[ITEM_OPTION_ID]</ItemCode>
+						<Description>[ITEM_OPTION_LABEL]</Description>
+						<Qty>[ITEM_OPTION_QUANTITY]</Qty>
+						<Each>1</Each>
+					[END_ITEM_OPTIONS_LIST][\]
+				</OrderItemInfo>
+				[END_ITEM_LIST][\]
+			[END_IF][\]
+
+			[BEGIN_ORDER_OPTIONS_LIST][\]
+			[BEGIN_IF("<ORDER_OPTION_ID>" != "REF1" && "<ORDER_OPTION_ID>" != "")]
+				<OrderItemInfo>
+					<OISequence>[ITEM_INDEX]</OISequence>
+					<ItemCode>[ORDER_OPTION_ID]</ItemCode>
+					<Description>[ORDER_OPTION_LABEL]</Description>
+					<Qty>[ORDER_OPTION_QUANTITY]</Qty>
+					<Each>1</Each>
+				</OrderItemInfo>
+			[END_IF]
+			[END_ORDER_OPTIONS_LIST][\]		
+			</OrderItems>		
+		</Order>
+	</Orders>
+</XML>
