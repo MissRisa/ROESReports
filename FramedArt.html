@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 <head>
 <style>
@@ -150,4 +151,145 @@
   [END_PRODUCT_SUMMARY_LIST]
 </table>
 </body>
+=======
+<html>
+<head>
+
+<style>
+  h1{text-align: right;margin:0px;}
+  th{padding:10px 9px 10px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;}
+  td{vertical-align:text-top;padding:7px 9px 9px 9px; border:1px solid #bebcb7; border-top:0;}
+  table{font-size:12px; width: 100%;}
+  span{font-size:18px; font-weight:bolder;}
+  section > table{width:320px;float:left;}
+  #rpad{padding-right: 20px;}
+  #tpad{padding-top: 20px;}
+  #ship{height: 198;padding-top: 20px;}
+  .shipout{text-align:center;background-color: black;color: white;}
+</style>
+
+</head>
+<body>
+<span>[LAB_LABEL]</span><h1><a href="http://www.barcodesinc.com/generator/"><img src="http://www.barcodesinc.com/generator/image.php?code=[LAB_ORDER_ID]&style=69&type=C128B&width=180&height=40&xres=1&font=5" alt="[LAB_ORDER_ID]" border="0"></a></h1>
+[BEGIN_ORDER_OPTIONS_LIST][BEGIN_IF("<ORDER_OPTION_ID>"=="PRIO")][\]
+[SET_MACRO_FROM_ATTRIBUTE(PRIORITY, priority)][PRIORITY][PRIORITY][PRIORITY][PRIORITY]
+[END_IF][\][END_ORDER_OPTIONS_LIST]
+<div id="all">
+<section class="container">
+<table id="rpad" border="0" cellpadding="0" cellspacing="0">
+  <thead>
+    <tr>
+      <th colspan="2" align="left"><span>Order Info:</span></th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Order ID:</td>
+    <td><strong>[LAB_ORDER_ID]</strong></td>
+  </tr>
+  <tr>
+    <td>Catalog: </td>
+    <td><strong>[CATALOG]</strong></td>
+  </tr>
+  <tr>
+    <td>.ro File:</td>
+    <td>[CUSTOMER_ORDER_ID]</td>
+  </tr>
+  <tr>
+    <td>Processing Date:</td>
+    <td>[CURRENT_DATE] - [CURRENT_TIME]</td>
+  </tr>
+  <tr>
+    <td>Payment CC#:</td>
+    <td>[PAYMENT_OBSCURED_CREDIT_CARD_NUMBER]</td>
+  </tr>
+    <tr>
+    <td>Promo Code:</td>
+    <td>[SET_MACRO_FROM_ORDER_ATTRIBUTE(PROMOCODE,promocode)][PROMOCODE]</td>
+  </tr>
+  <tr>
+    <td>Pre-Tax Order Total:</td>
+    <td>$[PRE_TAX_TOTAL_PRICE(03.02)]</td>
+  </tr>
+    <tr>
+    <td>Order Total:</td>
+    <td>$[TOTAL_PRICE(03.02)]</td>
+  </tr>
+    <tr>
+    <td>Job Reference:</td>
+    <td>[BEGIN_ORDER_OPTIONS_LIST][BEGIN_IF("<ORDER_OPTION_ID>"=="REF1")][\][ORDER_OPTION_LABEL][END_IF][\][END_ORDER_OPTIONS_LIST]</td>
+  </tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th colspan="2" align="left"><span>Customer Info:</span></th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Customer Name:</td>
+    <td>[CUSTOMER_NAME]</td>
+  </tr>
+  <tr>
+    <td>Phone:</td>
+    <td>[CUSTOMER_NUMBER]</td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td>[CUSTOMER_EMAIL]</td>
+  </tr>
+</table>
+
+<table id="ship" border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th colspan="2" align="left"><span>Shipping Info:</span></th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Ship method:</td>
+    <td>[SHIPPING_LABEL]</td>
+  </tr>
+  [BEGIN_IF(("<SHIPPING_ID>"!="LBPKUP")||("<SHIPPING_ID>"!="SHPCYP"))][\]
+  <tr>
+    <td colspan="2" ><p><strong>Ship To:
+        </strong>[SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_NAME,ship_to_name)][SHIP_NAME]
+        [SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_ADDRESS,ship_to_address)][SHIP_ADDRESS]
+        [SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_ADDRESS2,ship_to_address2)][SHIP_ADDRESS2]
+        [SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_CITY,ship_to_city)][SHIP_CITY][SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_STATE,ship_to_state)][SHIP_STATE]
+        [SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_ZIP,ship_to_zip)][SHIP_ZIP]</p></td>
+  </tr>
+  [END_IF][\]
+</table>
+</section>
+
+<table id="tpad" border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th colspan="4" align="left"><span>Product Summary:</span> </th>
+    </tr>
+  </thead>
+  <tr>
+    <td colspan="1"><strong>QTY</strong></td>
+    <td colspan="1"><strong>Description</strong></td>
+    <td colspan="1">Image</td>
+  </tr>
+  [BEGIN_ITEM_LIST]
+  <tr>
+    <td colspan="1">[ITEM_QUANTITY]</td> 
+    <td colspan="1">[ITEM_PRODUCT_DESCRIPTION(5)]</td>
+    [BEGIN_UNIT_LIST]
+    <td colspan="1"><img src="\\192.168.65.50\RPLShares\Production\Printing\ROES\Reports\[LAB_ORDER_ID]\thumbnails\[UNIT_THUMBNAIL_FILE]"></td>
+    [END_UNIT_LIST]
+  </tr>
+  [BEGIN_ITEM_OPTIONS_LIST][\]
+  <tr>
+    <td colspan="1">[ITEM_OPTION_QUANTITY]</td> 
+    <td colspan="2">[ITEM_OPTION_LABEL]</td>
+  </tr>
+  [END_ITEM_OPTIONS_LIST][\]
+  [END_ITEM_LIST][\]
+</table>
+</body>
+>>>>>>> 82d0ba131542588149fe7df2514b95fb566840ea
 </html>

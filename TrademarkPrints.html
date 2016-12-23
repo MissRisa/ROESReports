@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <html>
 <head>
 
@@ -168,4 +169,176 @@
 </table>
 </div>
 </body>
+=======
+<html>
+<head>
+
+<style>
+  h1{text-align: center;}
+  th{padding:10px 9px 10px 9px; border:1px solid #bebcb7; border-bottom:none; line-height:1em;}
+  td{vertical-align:text-top;padding:7px 9px 9px 9px; border:1px solid #bebcb7; border-top:0;}
+  table{font-size:12px; width: 100%;}
+  span{font-size:18px; font-weight:bolder;}
+  section > table{width:320px;float:left;}
+  #rpad{padding-right: 14px;}
+  #tpad{padding-top: 14px;}
+  #ship{height: 198;padding-top: 20px;}
+  .shipout{text-align:center;background-color: black;color: white;}
+</style>
+
+</head>
+<body>
+<h1>[LAB_LABEL]<a href="http://www.barcodesinc.com/generator/"><img src="http://www.barcodesinc.com/generator/image.php?code=[LAB_ORDER_ID]&style=69&type=C128B&width=180&height=40&xres=1&font=5" alt="[LAB_ORDER_ID]" border="0"></a></h1>
+[BEGIN_ORDER_OPTIONS_LIST][BEGIN_IF("<ORDER_OPTION_ID>"=="PRIO")][\]
+[SET_MACRO_FROM_ATTRIBUTE(PRIORITY, priority)][PRIORITY][PRIORITY][PRIORITY][PRIORITY]
+[END_IF][\][END_ORDER_OPTIONS_LIST]
+<div id="all">
+<section class="container">
+<table id="rpad" border="0" cellpadding="0" cellspacing="0">
+  <thead>
+    <tr>
+      <th colspan="2" align="left"><span>Order Info:</span></th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Order ID:</td>
+    <td><strong>[LAB_ORDER_ID]</strong></td>
+  </tr>
+  <tr>
+    <td>Catalog: </td>
+    <td><strong>[CATALOG]</strong></td>
+  </tr>
+  <tr>
+    <td>.ro File:</td>
+    <td>[CUSTOMER_ORDER_ID]</td>
+  </tr>
+  <tr>
+    <td>Processing Date:</td>
+    <td>[CURRENT_DATE] - [CURRENT_TIME]</td>
+  </tr>
+  <tr>
+    <td>Payment CC#:</td>
+    <td>[PAYMENT_OBSCURED_CREDIT_CARD_NUMBER]</td>
+  </tr>
+    <tr>
+    <td>Promo Code:</td>
+    <td>[SET_MACRO_FROM_ORDER_ATTRIBUTE(PROMOCODE,promocode)][PROMOCODE]</td>
+  </tr>
+  <tr>
+    <td>Pre-Tax Order Total:</td>
+    <td>$[PRE_TAX_TOTAL_PRICE(03.02)]</td>
+  </tr>
+    <tr>
+    <td>Order Total:</td>
+    <td>$[TOTAL_PRICE(03.02)]</td>
+  </tr>
+  <tr>
+    <td>Job Reference:</td>
+    <td>[BEGIN_ORDER_OPTIONS_LIST][BEGIN_IF("<ORDER_OPTION_ID>"=="REF1")][\][ORDER_OPTION_LABEL][END_IF][\][END_ORDER_OPTIONS_LIST]</td>
+  </tr>
+  <tr>
+    <td>Paper Type:</td>
+    <td>
+        [BEGIN_ORDER_OPTIONS_LIST]
+          [BEGIN_IF("<ORDER_OPTION_ID>"=="Fuji")][\]
+            <p>Fuji</p>
+          [END_IF][\]
+          [BEGIN_IF("<ORDER_OPTION_ID>"=="kodak")][\]
+            <p>Kodak</p>
+          [END_IF][\]
+          [BEGIN_IF("<ORDER_OPTION_ID>"=="nopref")][\]
+            <p>No Pref</p>
+          [END_IF][\]
+        [END_ORDER_OPTIONS_LIST]
+    </td>
+  </tr>
+</table>
+
+<table border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th colspan="2" align="left"><span>Customer Info:</span></th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Customer Name:</td>
+    <td>[CUSTOMER_NAME]</td>
+  </tr>
+  <tr>
+    <td>Phone:</td>
+    <td>[CUSTOMER_NUMBER]</td>
+  </tr>
+  <tr>
+    <td>Email:</td>
+    <td>[CUSTOMER_EMAIL]</td>
+  </tr>
+</table>
+
+<table id="ship" border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th colspan="2" align="left"><span>Shipping Info:</span></th>
+    </tr>
+  </thead>
+  <tr>
+    <td>Ship method:</td>
+    <td>[SHIPPING_LABEL]</td>
+  </tr>
+  <tr>
+    <td colspan="2" ><p><strong>Ship To:<br>
+        </strong>[SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_NAME,ship_to_name)][SHIP_NAME]<br>
+        [SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_ADDRESS,ship_to_address)][SHIP_ADDRESS]<br>
+        [SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_ADDRESS2,ship_to_address2)][SHIP_ADDRESS2]<br>
+        [SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_CITY,ship_to_city)][SHIP_CITY][SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_STATE,ship_to_state)][SHIP_STATE]<br>
+        [SET_MACRO_FROM_SHIPPING_METHOD_ATTRIBUTE(SHIP_ZIP,ship_to_zip)][SHIP_ZIP]</p></td>
+  </tr>
+</table>
+</section>
+<table id="tpad" border="0" cellspacing="0" cellpadding="0">
+  <thead>
+    <tr>
+      <th colspan="2" align="left"><span>Product Summary:</span> </th>
+    </tr>
+  </thead>
+  <tr>
+    <td><font size="-1"><strong>QTY</strong></font></td>
+    <td><font size="-1"><strong>Description</strong></font></td>
+  </tr>
+  [BEGIN_PRODUCT_SUMMARY_LIST]
+  <tr>
+    <td>[PRODUCT_QUANTITY]</td>
+    <td>
+          [PRODUCT_PRODUCT_DESCRIPTION]
+          [BEGIN_PRODUCT_OPTIONS_SUMMARY_LIST] | [PRODUCT_OPTIONS_LABEL]
+          [END_PRODUCT_OPTIONS_SUMMARY_LIST]
+    </td>
+  </tr>
+  [END_PRODUCT_SUMMARY_LIST]
+  [END_IF][\]
+    <tr>
+      <td colspan="2" ><font size="-1"><strong>Order Options</strong></font></td>
+    </tr>
+  [BEGIN_ORDER_OPTIONS_LIST]
+  [BEGIN_IF("
+  <ORDER_OPTION_ID>
+  "!="REF1")][\]
+  <tr>
+    <td>[ORDER_OPTION_QUANTITY]</td>
+    <td>[ORDER_OPTION_LABEL]</td>
+  </tr>
+  [END_IF][\][END_ORDER_OPTIONS_LIST]
+  [END_PRODUCT_SUMMARY_LIST]
+  <tr>
+    <td colspan="2" ><font size="-1"><strong>Finishing Services</strong></font></td>
+  </tr>
+  [BEGIN_ITEM_LIST][BEGIN_UNIT_LIST][SET_MACRO_FROM_ATTRIBUTE(FINISHING, finishing)][BEGIN_IF("<FINISHING>"=="true")][\]
+  <tr>
+    <td>[UNIT_QUANTITY]</td>
+    <td>[UNIT_BOUNDS_SIZE][BEGIN_UNIT_OPTIONS_LIST][BEGIN_IF(("<UNIT_OPTION_LABEL>"=="3/16 Foam Core - White")||("<UNIT_OPTION_LABEL>"==".080 Styrene - White")||("<UNIT_OPTION_LABEL>"==".080 Styrene - Black")||("<UNIT_OPTION_LABEL>"=="1/4 Coda Foam - White")||("<UNIT_OPTION_LABEL>"=="Black Frame")||("<UNIT_OPTION_LABEL>"=="Mahogany Frame")||("<UNIT_OPTION_LABEL>"=="Beech Frame"))][UNIT_OPTION_LABEL][END_IF][END_UNIT_OPTIONS_LIST]  for [BEGIN_UNIT_NODE_LIST][UNIT_NODE_IMAGE_FILE_NAME][END_UNIT_NODE_LIST]</td>
+  </tr>
+  [END_IF][\][END_UNIT_LIST][END_ITEM_LIST]
+</table>
+</div>
+</body>
+>>>>>>> 82d0ba131542588149fe7df2514b95fb566840ea
 </html>

@@ -1,6 +1,7 @@
 <html>
 <head>
 <style>
+  #all{width: 100%;}
   h1{text-align: center; margin:0px; }
   h1.span{text-align: right;}
   th{padding:10px 9px 10px 9px; border:1px solid #bebcb7; line-height:1em;}
@@ -14,6 +15,7 @@
   #ship{height: 192;padding-top: 10px;}
   div.top{width:100%;}
   .shipout{text-align:center;background-color: black;color: white;}
+  #alert{font-weight: bolder; text-align: center;}
 </style>
 </head>
 <body>
@@ -22,10 +24,18 @@
 <span style="font:2em bold; margin-left:10px; max-width:50%;">[LAB_LABEL]</span><span style="max-width:90%; min-width:50%; float:right; text-align:right;"><img style="margin: 5px 0px;" src="http://www.rplprints.com/roes/barcode/barcode.php?size=40&text=[LAB_ORDER_ID]" alt="[LAB_ORDER_ID]"/></span>
   </div>
 </table>
-[BEGIN_ORDER_OPTIONS_LIST][BEGIN_IF("<ORDER_OPTION_ID>"=="PRIO")][\]
-[SET_MACRO_FROM_ATTRIBUTE(PRIORITY, priority)][PRIORITY][PRIORITY][PRIORITY][PRIORITY]
-[END_IF][\][END_ORDER_OPTIONS_LIST]
 <div id="all">
+    <span id="alert">
+    [BEGIN_ORDER_OPTIONS_LIST][BEGIN_IF("<ORDER_OPTION_ID>"=="PRIO")][\]
+    ** PRIORITY ** PRIORITY ** PRIORITY ** PRIORITY ** PRIORITY ** PRIORITY **
+    [END_IF][\][END_ORDER_OPTIONS_LIST]
+    [BEGIN_IF("<SHIPPING_LABEL>"=="Pick up at LAB")][\]
+    ** LAB PICKUP ** LAB PICKUP ** LAB PICKUP ** LAB PICKUP ** LAB PICKUP **
+    [END_IF][\]
+    [BEGIN_IF("<SHIPPING_LABEL>"=="Ship to Simply Framed")][\]
+    ** SHIP TO SIMPLY FRAMED ** SHIP TO SIMPLY FRAMED ** SHIP TO SIMPLY FRAMED **
+    [END_IF][\]
+    </span>
 <section class="container">
 <table id="rpad" border="0" cellpadding="0" cellspacing="0" width="200">
   <thead>
