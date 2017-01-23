@@ -83,31 +83,6 @@
 						[END_IF][\]
 					[END_PRODUCT_SUMMARY_LIST][\]
 				[END_IF][\]
-				[BEGIN_IF("<CATALOG>" == "Press Printed Softcover Books" || "<CATALOG>" == "Press Printed Hardcover Books" || "<CATALOG>" == "Press Printed Hardcover Layflat Books")][\]
-				[BEGIN_ITEM_LIST]
-				<OrderItemInfo>
-					<OISequence>[ITEM_INDEX]</OISequence>
-					<ItemCode>[ITEM_PRODUCT_CODE]</ItemCode>
-					<Description>[ITEM_PRODUCT_DESCRIPTION]</Description>	
-					<Qty>[ITEM_QUANTITY]</Qty>
-					<Each>1</Each>
-					[BEGIN_ITEM_OPTIONS_LIST][\]
-						<ItemCode>[ITEM_OPTION_ID]</ItemCode>
-						<Description>[ITEM_OPTION_LABEL]</Description>
-						<Qty>[ITEM_OPTION_QUANTITY]</Qty>
-						<Each>1</Each>
-					[END_ITEM_OPTIONS_LIST][\]
-					[BEGIN_UNIT_LIST]
-						[BEGIN_UNIT_OPTIONS_LIST]
-							<ItemCode>[UNIT_OPTION_ID]</ItemCode>
-							<Description>[UNIT_OPTION_LABEL]</Description>
-							<Qty>[ITEM_OPTION_QUANTITY]</Qty>
-							<Each>1</Each>
-						[END_UNIT_OPTIONS_LIST][\]
-					[END_UNIT_LIST] 
-				</OrderItemInfo>
-				[END_ITEM_LIST][\]
-			[END_IF][\]
 			[BEGIN_IF("<CATALOG>"=="No-Correction Prints" || "<CATALOG>"=="Lab-Corrected Prints" || "<CATALOG>"=="No Correction Prints" || "<CATALOG>"=="Proof Prints" || "<CATALOG>"=="Framed Prints" || "<CATALOG>"=="Album Prints" || "<CATALOG>"=="Unit Prints" || "<CATALOG>"=="No-Correction Headshots" || "<CATALOG>"=="Lab-Corrected Headshots" || "<CATALOG>"=="Store" || "<CATALOG>"=="Press Printed Folded Cards" || "<CATALOG>"=="Press Printed Flat Cards" || "<CATALOG>"=="Press Flat Cards" || "<CATALOG>"=="Press Flat Cards" || "<CATALOG>"=="Fine Art Prints" || "<CATALOG>"=="Canvas" || "<CATALOG>"=="Fine Art Prints" || "<CATALOG>"=="Trademark Prints")][\]
 				[BEGIN_ITEM_LIST][\]
 				<OrderItemInfo>
